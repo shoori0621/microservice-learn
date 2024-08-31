@@ -4,22 +4,25 @@ option go_package = "gihyo/catalogue/proto/book";
 
 package book;
 
-// `GetBookRequest`を受け取り、 `GetBookResponse` を返す `Catalogue` サービスの定義
+import "google/protobuf/empty.proto";
+
 service Catalogue {
   rpc GetBook (GetBookRequest) returns (GetBookResponse) {}
+  rpc ListBooks (google.protobuf.Empty) returns (ListBooksResponse) {}
 }
 
-// `id` を含むリクエスト `GetBookRequest` の定義
 message GetBookRequest {
   int32 id = 1;
 }
 
-// `book` を含むレスポンス `GetBookResponse` の定義
 message GetBookResponse {
   Book book = 1;
 }
 
-// 書籍情報 `Book` の定義
+message ListBooksResponse {
+  repeated Book books = 1;
+}
+
 message Book {
   int32 id = 1;
   string title = 2;
