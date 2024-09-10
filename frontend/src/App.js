@@ -1,5 +1,5 @@
-import { useQuery, gql } from '@apollo/client';
 import './App.css';
+import { useQuery, gql } from '@apollo/client';
 
 const LIST_BOOKS = gql`
   query ListBooks {
@@ -12,10 +12,13 @@ const LIST_BOOKS = gql`
   }
 `
 
+
 function App() {
   const { loading, error, data } = useQuery(LIST_BOOKS)
+
   if (loading) return 'Loading...'
   if (error) return `Error! ${error.message}`
+
   return (
     <div className="App">
       <table>
